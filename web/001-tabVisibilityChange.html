@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>你好呀^.^</title>
+    </head>
+    <body>
+        <script>
+            var hidden, visibilityChange;
+            if (typeof document.hidden !== 'undefined') {
+                hidden = 'hidden';
+                visibilityChange = 'visibilitychange';
+            } else if (typeof document.mozHidden !== 'undefined') {
+                hidden = 'mozHidden';
+                visibilityChange = 'mozvisibilitychange';
+            } else if (typeof document.msHidden !== 'undefined') {
+                hidden = 'msHidden';
+                visibilityChange = 'msvisibilitychange';
+            } else if (typeof document.webkitHidden !== 'undefined') {
+                hidden = 'webkitHidden';
+                visibilityChange = 'webkitvisibilitychange';
+            }
+            // 添加监听器，在title里显示状态变化或做其他一些事情
+            document.addEventListener(
+                visibilityChange,
+                function () {
+                    if (document[hidden]) {
+                        // 用户没有浏览当前页面
+                        document.getElementsByTagName('title')[0].innerText = '你快回来！我一个人怕...';
+                    } else {
+                        // 用户正在浏览当前页面
+                        document.getElementsByTagName('title')[0].innerText = '你好呀^.^';
+                    }
+                },
+                false
+            );
+        </script>
+    </body>
+</html>
